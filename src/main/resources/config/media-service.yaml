@@ -1,0 +1,13 @@
+server:
+  port: 8083
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 25MB
+
+# unstray:
+#   storage:
+#     project-id: your-gcp-project-id
+#     bucket-name: unstray-media-bucket
