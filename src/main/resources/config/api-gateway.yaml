@@ -4,23 +4,62 @@ server:
 spring:
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-      routes:
-        - id: user-service
-          uri: lb://user-service
-          predicates:
-            - Path=/api/v1/users/**
-        - id: item-service
-          uri: lb://item-service
-          predicates:
-            - Path=/api/v1/items/**
-        - id: media-service
-          uri: lb://media-service
-          predicates:
-            - Path=/api/v1/media/**
+      server:
+        webflux:
+          globalcors:
+            add-to-simple-url-handler-mapping: true
+            cors-configurations:
+              '[/**]':
+                allowedOrigins:
+                  - "http://localhost:5173"
+                allowedOriginPatterns:
+                  - "http://localhost:5173"
+                allowedMethods:
+                  - GET
+                  - POST
+                  - PUT
+                  - DELETE
+                  - PATCH
+                  - OPTIONS
+                allowedHeaders: "*"
+                allowCredentials: true
+
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+
+          routes:
+            - id: user-service
+              uri: lb://user-service
+              predicates:
+                - Path=/api/v1/users/**, /api/v1/users
+
+            - id: item-service
+              uri: lb://item-service
+              predicates:
+                - Path=/api/v1/items/**, /api/v1/items
+              filters:
+                - AuthenticationFilter
+
+            - id: media-service
+              uri: lb://media-service
+              predicates:
+                - Path=/api/v1/media/**, /api/v1/media
+              filters:
+                - AuthenticationFilter
+
+            - id: media-uploads
+              uri: lb://media-service
+              predicates:
+                - Path=/uploads/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
 
 management:
   endpoints:
