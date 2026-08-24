@@ -2,19 +2,39 @@
 #  application:
 #    name: config-server
 
+# server:
+#   port: 8888
+
+# spring:
+#   application:
+#     name: config-server
+#   profiles:
+#     active: native
+#   cloud:
+#     config:
+#       server:
+#         native:
+#           search-locations: classpath:/config
+
+# management:
+#   endpoints:
+#     web:
+#       exposure:
+#         include: health,info
+
 server:
   port: 8888
 
 spring:
   application:
     name: config-server
-  profiles:
-    active: native
   cloud:
     config:
       server:
-        native:
-          search-locations: classpath:/config
+        git:
+          uri: https://github.com/kameshNethsara/unstray-config-repo
+          default-label: main
+          clone-on-start: true
 
 management:
   endpoints:
