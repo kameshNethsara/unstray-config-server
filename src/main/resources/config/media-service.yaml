@@ -26,7 +26,7 @@ unstray:
     type: local # Options: 'local' or 'gcs'
     local-dir: ./uploads # Directory where files will be saved locally
     local-url-prefix: http://localhost:8083/uploads/ # Base URL to access local files
-    bucket-name: unstray-media-bucket # For GCP GCS deployment
+    bucket-name: media-bucket-317 # For GCP GCS deployment
 
 eureka:
   client:

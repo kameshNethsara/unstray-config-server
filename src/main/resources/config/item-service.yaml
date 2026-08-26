@@ -4,10 +4,17 @@ server:
 spring:
   application:
     name: item-service
+#  data:
+#    mongodb:
+#      uri: mongodb://localhost:27017/unstray_item_db
+
+  # Primary Spring Data Property
   data:
     mongodb:
-      uri: mongodb://localhost:27017/unstray_item_db
-
+      uri: mongodb://kamesh:UmO6F8yypfjRRHdihkMTJZgOOzgMWCGVWhfposnLtzdcN4yP@3d7b312e-0ff6-4de8-8feb-ce78ba397801.asia-south1.firestore.goog:443/unstray-items-db?loadBalanced=true&tls=true&authMechanism=SCRAM-SHA-256&retryWrites=false
+  # Fallback Direct Property (Modern Spring Boot Core binding)
+  mongodb:
+    uri: mongodb://kamesh:UmO6F8yypfjRRHdihkMTJZgOOzgMWCGVWhfposnLtzdcN4yP@3d7b312e-0ff6-4de8-8feb-ce78ba397801.asia-south1.firestore.goog:443/unstray-items-db?loadBalanced=true&tls=true&authMechanism=SCRAM-SHA-256&retryWrites=false
 eureka:
   client:
     service-url:

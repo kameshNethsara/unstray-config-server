@@ -2,11 +2,30 @@ server:
   port: 8081
 
 spring:
+  application:
+    name: user-service
+
+  # Localhost Configuration
+  # datasource:
+  #   url: jdbc:mysql://localhost:3306/unstray_users?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+  #   username: root
+  #   password: "@317Kns20020317"
+  #   driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # GCP Cloud SQL Public IP Configuration (Local Testing)
   datasource:
-    url: jdbc:mysql://localhost:3306/unstray_users?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: root
-    password: "@317Kns20020317"
-    driver-class-name: com.mysql.cj.jdbc.Driver
+     url: jdbc:mysql://34.93.174.5:3306/unstray_users?useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+     username: kamesh
+     password: kns123
+     driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # GCP Cloud SQL Private IP Configuration (VM Instance Deployment)
+#  datasource:
+#    url: jdbc:mysql://10.50.80.3:3306/unstray_users?useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+#    username: kamesh
+#    password: kns123
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
